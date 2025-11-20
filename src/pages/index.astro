@@ -19,7 +19,8 @@ const hiddenMail = "i@vitalya.me"
 
 <Layout>
   <Map mapUrl={mapUrl} wttr={today.wttr} />
-  <div class="container w-full flex-grow py-8 mx-auto flex max-w-3xl flex-col gap-2 px-8 relative top-[-55px]">
+  <!-- TODO: container component or something. or move it to Layout and add slot above? -->
+  <div class="container main-page w-full flex-grow py-8 mx-auto flex max-w-3xl flex-col gap-2 px-8 relative top-[-55px]">
     <header class="flex flex-col gap-3">
       <h1 class="text-4xl font-semibold">Hello!</h1>
       <h2>my name is <Name /> and I am currently in <DynamicText>{today.wttr.areaName}, {today.wttr.areaCountry}</DynamicText></h2>
@@ -54,13 +55,8 @@ const hiddenMail = "i@vitalya.me"
 }
 
 @media (min-width: 600px) {
-  .container:hover {
+  .container.main-page:hover {
     transform: rotate(0.8deg);
   }
-}
-
-.table {
-  display: grid;
-  grid-template-columns: 1fr 4fr ;
 }
 </style>
