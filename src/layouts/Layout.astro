@@ -1,22 +1,50 @@
+---
+import { site } from "../config";
+import "../styles/global.css";
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <!-- TODO: og tags and shit -->
+    <!-- TODO: favicon -->
+    <title>{site.name}</title>
+  </head>
+  <body>
+    <div class="balls" />
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .balls{
+    position: fixed;
+    inset: 0;
+    image-rendering: pixelated;
+    background: url(/balls.png) repeat;
+    background-size: 10% auto;
+      animation: slideBackground 120s linear infinite;
+  }
+
+  @keyframes slideBackground {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 100% 100%;
+    }
+  }
 </style>

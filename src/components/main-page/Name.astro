@@ -1,0 +1,21 @@
+---
+---
+<b id="name">Vitalya</b>
+
+<script>
+  const names = ["Vitalya", "vitalä", 'виталя', 'vita', 'veetaleek']
+  let index = 0;
+
+  document.querySelector('#name')?.addEventListener('click', () => {
+    index = (index + 1) % names.length;
+    document.querySelector('#name')!.textContent = names[index];
+  });
+</script>
+
+<style>
+  #name {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+</style>

@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #35374b;
+  --text: #e2dfd0;
+  /*--dynamic-bg: #50727B;*/
+  /*--dynamic-text: #050409;*/
+  --dynamic-bg: #406068;
+  --dynamic-text: var(--text);
+}
+
+a {
+  text-decoration: underline;
+  color: #8fabd4;
+}

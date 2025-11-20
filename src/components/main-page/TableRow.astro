@@ -1,0 +1,9 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+<div class="whitespace-nowrap p-0 pr-[2em]">{title}</div>
+<div class="p-0"><slot /></div>

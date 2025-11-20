@@ -1,0 +1,44 @@
+---
+interface Props {
+  time?: string;
+  href?: string;
+  title?: string;
+}
+
+const { time, href, title } = Astro.props;
+let formattedTime = "";
+if (time) {
+  const diff = (Date.now() - new Date(time).getTime()) / 1000;
+  const minutes = Math.floor(diff / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+  if (days > 0) {
+    formattedTime = rtf.format(0 - days, "day");
+  } else if (hours > 0) {
+    formattedTime = rtf.format(0 - hours, "hour");
+  } else if (minutes > 0) {
+    formattedTime = rtf.format(0 - minutes, "minute");
+  } else {
+    formattedTime = rtf.format(0 - diff, "second");
+  }
+}
+---
+<span class="dynamic" title={title}>{href ? <a href={href}><slot /></a> : <slot/>}</span>{time && <span class="time" title={time}>({formattedTime})</span>}
+<style>
+.dynamic {
+  background-color: var(--dynamic-bg);
+  color: var(--dynamic-text);
+  padding: 3px;
+}
+
+.dynamic a {
+  color: var(--dynamic-text);
+}
+
+.time {
+  font-size: small;
+  opacity: 50%;
+  padding-left: 5px;
+}
+</style>
