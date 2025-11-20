@@ -9,6 +9,8 @@ import "../styles/global.css";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#35374b">
+    <meta name="author" content="Vitalya Volynskiy">
     <meta name="generator" content={Astro.generator} />
     <!-- TODO: og tags and shit -->
     <!-- TODO: favicon -->
@@ -30,13 +32,13 @@ import "../styles/global.css";
     height: 100%;
   }
 
-  .balls{
+  .balls {
     position: fixed;
     inset: 0;
     image-rendering: pixelated;
     background: url(/balls.png) repeat;
     background-size: 10% auto;
-      animation: slideBackground 120s linear infinite;
+    animation: slideBackground 120s linear infinite;
   }
 
   @keyframes slideBackground {
