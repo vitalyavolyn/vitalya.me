@@ -1,3 +1,5 @@
+import sharp from "sharp";
+
 export async function getToday() {
   const response = await fetch(`${import.meta.env.DEVON_URL}/today`, {
     signal: AbortSignal.timeout(3000),
@@ -18,7 +20,10 @@ export async function getMapUrl(wttr: any) {
   const url = `https://api.mapbox.com/styles/v1/mapbox/dark-v11/static/${lon},${lat},10,0/1280x380@2x?access_token=${import.meta.env.MAPBOX_KEY}`;
   const response = await fetch(url);
   const buffer = await response.arrayBuffer();
-  cachedMap = `data:image/png;base64,${Buffer.from(buffer).toString("base64")}`;
+  const compressedBuffer = await sharp(buffer)
+    .toFormat("webp", { quality: 67 })
+    .toBuffer();
+  cachedMap = `data:image/webp;base64,${compressedBuffer.toString("base64")}`;
   cachedCoords = { lat, lon };
   return cachedMap;
 }
