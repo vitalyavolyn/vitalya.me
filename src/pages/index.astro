@@ -40,6 +40,11 @@ const hiddenMail = "i@vitalya.me"
       <TableRow title="twitter"><a href="https://twitter.com/vitalyavolyn" rel="me">@vitalyavolyn</a></TableRow>
       <TableRow title="email">{hiddenMail}</TableRow>
     </Table>
+    <section class="webring text-right text-sm">
+      <a href="https://webring.otomir23.me/vita/prev">⤺</a>
+      <a href="https://webring.otomir23.me/">webring</a>
+      <a href="https://webring.otomir23.me/vita/next">⤻</a>
+    </section>
   </div>
 </Layout>
 
@@ -52,6 +57,14 @@ const hiddenMail = "i@vitalya.me"
     0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   border-radius: 5px;
   transition: transform 0.1s;
+}
+
+.webring {
+  font-size: small;
+}
+
+.webring a {
+  color: var(--text)
 }
 
 @media (min-width: 600px) {
