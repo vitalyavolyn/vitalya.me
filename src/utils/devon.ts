@@ -12,7 +12,7 @@ let cachedCoords = { lat: 0, lon: 0 };
 let cachedMap = "";
 export async function getMapUrl(wttr: any) {
   const lon = wttr.areaLongitude;
-  const lat = wttr.areaLatitude - 0.05;
+  const lat = wttr.areaLatitude;
   if (cachedMap && cachedCoords.lat === lat && cachedCoords.lon === lon) {
     return cachedMap;
   }
