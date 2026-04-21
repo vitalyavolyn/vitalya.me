@@ -10,7 +10,7 @@ import { getMapUrl, getToday } from "../utils/devon";
 const today = await getToday();
 const mapUrl = await getMapUrl(today.wttr);
 
-const [hr, min] = today.sleep.answer.split(":");
+const [hr, min] = today.sleep.answer.split(":").map((e: string) => e.replace(/^0/, ''));
 
 const hiddenMail = "i@vitalya.me"
   .replaceAll("@", " (at) ")
