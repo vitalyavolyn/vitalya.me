@@ -1,16 +1,13 @@
 ---
 interface Props {
   mapUrl: string;
-  wttr: any;
 }
 
-const { mapUrl, wttr } = Astro.props;
+const { mapUrl } = Astro.props;
 ---
 
 <div id="map" style={`--map-url: url(${mapUrl})`}>
-  <div class="map-container">
-    <div class="info">{wttr.maxTempC}°C</div>
-  </div>
+  <div class="map-container" />
 </div>
 <style>
   #map {
@@ -25,17 +22,5 @@ const { mapUrl, wttr } = Astro.props;
     background-position: center;
     position: relative;
     background-size: cover;
-  }
-
-  .info {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    background: var(--bg);
-    padding: 5px 10px;
-    border-radius: 15px;
-    border: solid 3px var(--dynamic-bg);
   }
 </style>
