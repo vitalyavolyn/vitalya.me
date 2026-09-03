@@ -30,7 +30,7 @@ const { Content } = await render(post);
   .post-content :global(iframe) {
     display: block;
     width: 100%;
-    max-width: 50%;
+    max-width: 70%;
     height: auto;
     aspect-ratio: 16 / 9;
     border: 0;
@@ -58,5 +58,14 @@ const { Content } = await render(post);
 
   .post-content :global(ol) {
     @apply my-4 list-decimal pl-6;
+  }
+
+  .post-content :global(pre) {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .post-content :global(:not(pre) > code) {
+    overflow-wrap: anywhere;
   }
 </style>
