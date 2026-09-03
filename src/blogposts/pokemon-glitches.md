@@ -10,10 +10,12 @@ For the last n months I've been fiddling with [pret](https://github.com/pret/) p
 All of these have been tested with the following ROMs on real hardware or melonDS:
 <details>
   <summary>hashes</summary>
-platinum ce81046eda7d232513069519cb2085349896dec7<br>
-emerald f3ae088181bf583e55daf962a92bb46f4f1d07b7<br>
-heart gold 30793e274fb4c7ba070ae226edbdfe355504b1f5<br>
-soul silver 27a25c23aa1c0ecabe48a30a004b96c9dbc97730<br>
+<pre>
+platinum  ce81046eda7d232513069519cb2085349896dec7
+emerald   f3ae088181bf583e55daf962a92bb46f4f1d07b7
+heart gold 30793e274fb4c7ba070ae226edbdfe355504b1f5
+soul silver 27a25c23aa1c0ecabe48a30a004b96c9dbc97730
+</pre>
 </details>
 
 ## infinite fossils in D/P/Pt
@@ -74,16 +76,14 @@ This is very time consuming, but maybe you really don't want to tamper with your
 
 The table is `GetTransferSlotByTrainerID` in `pokeplatinum/src/pal_park_transfers.c:38-66`. `GetCanMigrateStatus` (`pokeplatinum/src/main_menu/gba_migrator.c:1693-1743`) only consults this table.
 
-# infinite battle with Magnet Rise, Fly and Gravity (HG/SS)
+## infinite battle with Magnet Rise, Fly and Gravity (HG/SS)
 
 Get a Pokémon airborne two different ways at once and Gravity only knows how to undo one of them, the other sticks forever. The Pokémon stays invisible mid-Fly, locked into repeating that same move every turn, for the rest of the battle.
 
-Setup: have it use Magnet Rise, then Fly the following turn (so it's mid-vanish), then have the opponent use Gravity while both are still active. Gravity is supposed to ground everything on the field: end Magnet Rise early, *and* immediately cancel a Fly/Bounce vanish, bringing the user back down and freeing up its move choice. It does the first. It doesn't do the second.
-
-But the per-battler cleanup script checks "does this thing have Magnet Rise" and "is this thing vanished from Fly/Bounce" as if only one could ever be true, handling whichever one it finds first and calling it done. Hit both at once and the Fly cleanup (the part that actually un-vanishes the Pokémon and unlocks its move) just never runs. Gravity fires, tells everyone they're grounded, and leaves this one Pokémon floating there anyway, permanently mid-Fly.
+Setup: have it use Magnet Rise, then Fly the following turn (so it's mid-vanish), then have the opponent use Gravity while both are still active. Gravity should end Magnet Rise and cancel the Fly/Bounce vanish, bringing the user back down and freeing up its move choice. Instead, it handles Magnet Rise first, then exits before the Fly cleanup runs. The Pokémon remains invisible and locked into repeating Fly for the rest of the battle.
 
 <iframe width="1427" height="640" src="https://www.youtube.com/embed/PfGydh3TmZ0" title="magner rise + fly + gravity" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Probably not reachable in a legit game, I can't find a Pokémon that learns both Magnet Rise and Fly/Bounce outside of Mew and Smeargle (or a way to pass Magnet Rise's effect via Baton Pass onto a flier).<sup>\[citation needed]</sup>
 
-It's in `files/battledata/script/subscript/subscript_0156_GravityStart.s`. The per-battler loop checks for Magnet Rise first (line 16) and, if found, jumps straight to the cleanup-and-exit block, clearing the timer and printing the "couldn't stay airborne" message — skipping right over the very next check (line 17), which is the *only* place that leads to the code that actually un-vanishes a Fly/Bounce user and unlocks its move (lines 30-31). It was written as an if/elif when it needed to be two independent ifs.
+It's in `files/battledata/script/subscript/subscript_0156_GravityStart.s`. The per-battler loop checks for Magnet Rise first (line 16) and, if found, jumps straight to the cleanup-and-exit block. That skips the next check (line 17), which is the only path that un-vanishes a Fly/Bounce user and unlocks its move (lines 30–31). In effect, the script treats the two effects as mutually exclusive when it should clean them up independently.
