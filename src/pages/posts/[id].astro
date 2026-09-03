@@ -1,7 +1,17 @@
 ---
-import { getEntry, render } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Nav from "../../components/Nav.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { id: post.id },
+  }));
+}
 
 const { id } = Astro.params;
 const post = await getEntry("blog", id!);
