@@ -1,7 +1,7 @@
 ---
 
 title: 'some pokemon gen 3-4 oversights and curiosities i found'
-pubDate: 'Sep 5 2026'
+pubDate: 'Sep 3 2026'
 
 ---
 
@@ -10,10 +10,10 @@ For the last n months I've been fiddling with [pret](https://github.com/pret/) p
 All of these have been tested with the following ROMs on real hardware or melonDS:
 <details>
   <summary>hashes</summary>
-platinum ce81046eda7d232513069519cb2085349896dec7
-emerald f3ae088181bf583e55daf962a92bb46f4f1d07b7
-heart gold 30793e274fb4c7ba070ae226edbdfe355504b1f5
-soul silver 27a25c23aa1c0ecabe48a30a004b96c9dbc97730
+platinum ce81046eda7d232513069519cb2085349896dec7<br>
+emerald f3ae088181bf583e55daf962a92bb46f4f1d07b7<br>
+heart gold 30793e274fb4c7ba070ae226edbdfe355504b1f5<br>
+soul silver 27a25c23aa1c0ecabe48a30a004b96c9dbc97730<br>
 </details>
 
 ## infinite fossils in D/P/Pt
