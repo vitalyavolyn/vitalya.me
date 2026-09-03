@@ -5,8 +5,6 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { site } from "./src/config";
 
-import mdx from "@astrojs/mdx";
-
 // https://astro.build/config
 export default defineConfig({
   site: site.url,
@@ -25,5 +23,4 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [mdx()],
 });

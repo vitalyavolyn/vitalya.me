@@ -64,7 +64,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/markdown-satteri@npm:0.4.0, @astrojs/markdown-satteri@npm:^0.4.0":
+"@astrojs/markdown-satteri@npm:^0.4.0":
   version: 0.4.0
   resolution: "@astrojs/markdown-satteri@npm:0.4.0"
   dependencies:
@@ -73,24 +73,6 @@ __metadata:
     github-slugger: "npm:^2.0.0"
     satteri: "npm:^0.10.3"
   checksum: 10c0/eacaaf65b8316a6d3d2441a341d64ca850a40d18a9c3a21faa90c4d7c6c134fb27f2315676b647df9207aa37b76b51059baf73308cc58330d2a0fce641fc55be
-  languageName: node
-  linkType: hard
-
-"@astrojs/mdx@npm:^8.0.0":
-  version: 8.0.0
-  resolution: "@astrojs/mdx@npm:8.0.0"
-  dependencies:
-    "@astrojs/internal-helpers": "npm:0.11.0"
-    "@astrojs/markdown-satteri": "npm:0.4.0"
-    es-module-lexer: "npm:^2.0.0"
-  peerDependencies:
-    "@astrojs/markdown-remark": ^7.3.0
-    "@astrojs/markdown-satteri": ^0.4.0
-    astro: ^7.2.6
-  peerDependenciesMeta:
-    "@astrojs/markdown-remark":
-      optional: true
-  checksum: 10c0/1af058d8d557198ba0f43fc1d8382b92cec404b0e1062bea321f4abd17f1d3152a7b634f283599b287649656e6ebfd1f9193d23f7591b9299b3625d657943bba
   languageName: node
   linkType: hard
 
@@ -2207,13 +2189,6 @@ __metadata:
   version: 1.7.0
   resolution: "es-module-lexer@npm:1.7.0"
   checksum: 10c0/4c935affcbfeba7fb4533e1da10fa8568043df1e3574b869385980de9e2d475ddc36769891936dbb07036edb3c3786a8b78ccf44964cd130dedc1f2c984b6c7b
-  languageName: node
-  linkType: hard
-
-"es-module-lexer@npm:^2.0.0":
-  version: 2.3.2
-  resolution: "es-module-lexer@npm:2.3.2"
-  checksum: 10c0/5e7389424c43478439f12f9a6aca1750f6f99afa384fc3de329f4a45f152ab156671055008adaafc74960877abf8cc338aeebf6bed8c21297b146fd6eb7a22f8
   languageName: node
   linkType: hard
 
@@ -5043,7 +5018,6 @@ __metadata:
   resolution: "vitalya.me@workspace:."
   dependencies:
     "@astrojs/markdown-satteri": "npm:^0.4.0"
-    "@astrojs/mdx": "npm:^8.0.0"
     "@astrojs/node": "npm:^9.5.2"
     "@biomejs/biome": "npm:^2.3.13"
     "@tailwindcss/vite": "npm:^4.1.18"
