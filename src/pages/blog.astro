@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import Nav from "../components/Nav.astro";
+import Layout from "../layouts/Layout.astro";
+
+const posts = (await getCollection('blog') as any[])
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .map((post) => ({
+    ...post,
+    date: post.data.pubDate.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    }).replace(',', ''),
+  }))
+---
+<Layout>
+  <div class="container w-full grow py-8 mx-auto flex max-w-3xl flex-col gap-2 px-8 relative top-4">
+    <Nav />
+    <h1 class="text-4xl font-semibold">articles</h1>
+    <div class="pl-7 flex flex-col posts">
+      {posts.map((post) => <div class="flex">
+        <a href={`/posts/${post.id}`}>{post.data.title}</a>
+        <div class="grow"></div>
+        <span>{post.date}</span>
+      </div>)}
+    </div>
+  </div>
+</Layout>
+
+<style>
+.posts a {
+  color: var(--text);
+}
+</style>

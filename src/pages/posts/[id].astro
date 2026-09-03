@@ -1,0 +1,62 @@
+---
+import { getEntry, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+
+const { id } = Astro.params;
+const post = await getEntry("blog", id!);
+
+if (!post) {
+  return new Response(null, { status: 404 });
+}
+
+const { Content } = await render(post);
+---
+
+<Layout>
+  <div class="container w-full flex-grow py-8 mx-auto flex max-w-3xl flex-col gap-2 px-8 relative top-4">
+    <Nav />
+    <h1 class="text-4xl font-semibold">{post.data.title}</h1>
+    <time class="opacity-55">{post.data.pubDate.toLocaleDateString("en-US")}</time>
+    <div class="post-content">
+      <Content />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  @reference "../../styles/global.css";
+
+  .post-content :global(iframe) {
+    display: block;
+    width: 100%;
+    max-width: 50%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: 0;
+  }
+
+  .post-content :global(h1) {
+    @apply text-4xl font-semibold pt-2;
+  }
+
+  .post-content :global(h2) {
+    @apply text-3xl font-semibold pt-2;
+  }
+
+  .post-content :global(h3) {
+    @apply text-2xl font-semibold pt-2;
+  }
+
+  .post-content :global(p) {
+    @apply my-4;
+  }
+
+  .post-content :global(ul) {
+    @apply my-4 list-disc pl-6;
+  }
+
+  .post-content :global(ol) {
+    @apply my-4 list-decimal pl-6;
+  }
+</style>

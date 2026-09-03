@@ -4,6 +4,7 @@ import Map from "../components/main-page/Map.astro";
 import Name from "../components/main-page/Name.astro";
 import Table from "../components/main-page/Table.astro";
 import TableRow from "../components/main-page/TableRow.astro";
+import Nav from "../components/Nav.astro";
 import Layout from "../layouts/Layout.astro";
 import { getMapUrl, getToday } from "../utils/devon";
 
@@ -21,6 +22,7 @@ const hiddenMail = "i@vitalya.me"
   <Map mapUrl={mapUrl} />
   <!-- TODO: container component or something. or move it to Layout and add slot above? -->
   <div class="container main-page w-full grow py-8 mx-auto flex max-w-3xl flex-col gap-2 px-8 relative top-[-55px]">
+    <Nav />
     <header class="flex flex-col gap-3">
       <h1 class="text-4xl font-semibold">Hello!</h1>
       <h2>my name is <Name /> and I am currently in <DynamicText>{today.wttr.areaName}, {today.wttr.areaCountry}</DynamicText></h2>
@@ -51,10 +53,6 @@ const hiddenMail = "i@vitalya.me"
 <style>
 .container {
   transition: transform 0.1s;
-}
-
-.webring {
-  font-size: small;
 }
 
 .webring a {
