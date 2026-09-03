@@ -13,7 +13,7 @@ if (!post) {
 const { Content } = await render(post);
 ---
 
-<Layout>
+<Layout title={post.data.title} type="article">
   <div class="container w-full flex-grow py-8 mx-auto flex max-w-3xl flex-col gap-2 px-8 relative top-4">
     <Nav />
     <h1 class="text-4xl font-semibold">{post.data.title}</h1>

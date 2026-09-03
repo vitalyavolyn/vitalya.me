@@ -1,6 +1,20 @@
 ---
 import { site } from "../config";
 import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  type?: "profile" | "article";
+}
+
+const {
+  title = site.name,
+  description = "software engineer from Kazakhstan",
+  type = "profile",
+} = Astro.props;
+const documentTitle = title === site.name ? title : `${title} | ${site.name}`;
+const canonicalUrl = new URL(Astro.url.pathname, site.url).toString();
 ---
 
 <!doctype html>
@@ -12,22 +26,22 @@ import "../styles/global.css";
     <meta name="theme-color" content="#35374b">
     <meta name="author" content="Vitalya Volynskiy">
 
-    <meta property="og:type" content="profile" />
+    <meta property="og:type" content={type} />
     <!-- <meta property="og:image" content='https://vitalya.me/og-image.png'/> -->
-    <meta property="og:title" content="Vitalya" />
+    <meta property="og:title" content={title} />
     <meta property="og:locale" content="en_US" />
-    <meta name="description" content="software engineer from Kazakhstan" />
-    <meta property="og:description" content="software engineer from Kazakhstan" />
-    <meta property="og:url" content="https://vitalya.me/" />
+    <meta name="description" content={description} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
 
     <meta property="profile:first_name" content="Vitalya">
     <meta property="profile:last_name" content="Volynskiy">
     <meta property="profile:gender" content="male">
     <meta property="profile:username" content="vitalyavolyn">
 
-    <link rel="canonical" href="https://vitalya.me/" />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="generator" content={Astro.generator} />
-    <title>{site.name}</title>
+    <title>{documentTitle}</title>
   </head>
   <body>
     <div class="balls" />
