@@ -9,6 +9,7 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: site.url,
+  trailingSlash: "always",
 
   adapter: node({
     mode: "standalone",
@@ -24,5 +25,10 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // /blog/ is a legacy redirect to /posts/ and should not be indexed.
+      filter: (page) => !page.endsWith("/blog/"),
+    }),
+  ],
 });
