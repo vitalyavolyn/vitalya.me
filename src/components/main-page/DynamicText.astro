@@ -8,10 +8,14 @@ interface Props {
 const { time, href, title } = Astro.props;
 let formattedTime = "";
 if (time) {
-  const diff = (Date.now() - new Date(time).getTime()) / 1000;
+  const now = new Date();
+  const timestamp = new Date(time);
+  const diff = (now.getTime() - timestamp.getTime()) / 1000;
   const minutes = Math.floor(diff / 60);
   const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
+  const utcDay = (date: Date) =>
+    Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+  const days = Math.floor((utcDay(now) - utcDay(timestamp)) / 86_400_000);
   const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
   if (days > 0) {
     formattedTime = rtf.format(0 - days, "day");
