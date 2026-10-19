@@ -2,6 +2,7 @@
 
 title: 'some pokemon gen 3-4 oversights and curiosities i found'
 pubDate: 'Sep 3 2026'
+description: 'infinite fossils in d/p/pt, catching deoxys in a funny way and other stuff'
 
 ---
 

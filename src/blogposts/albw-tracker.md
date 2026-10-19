@@ -2,6 +2,7 @@
 
 title: 'a 100% checklist for the legend of zelda: a link between worlds'
 pubDate: 'Oct 19 2026'
+description: 'i made myself a tool to finally complete the game i started in 2019'
 
 ---
 
