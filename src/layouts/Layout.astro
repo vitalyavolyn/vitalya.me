@@ -5,16 +5,33 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
-  type?: "profile" | "article";
+  type?: "profile" | "article" | "website";
+  publishedTime?: Date;
 }
 
 const {
   title = site.name,
   description = "software engineer from Kazakhstan",
   type = "profile",
+  publishedTime,
 } = Astro.props;
 const documentTitle = title === site.name ? title : `${title} | ${site.name}`;
 const canonicalUrl = new URL(Astro.url.pathname, site.url).toString();
+const publishedDate = publishedTime && [
+  publishedTime.getFullYear(),
+  String(publishedTime.getMonth() + 1).padStart(2, "0"),
+  String(publishedTime.getDate()).padStart(2, "0"),
+].join("-");
+const author = { name: "Vitalya Volynskiy", url: site.url };
+const articleJsonLd = type === "article" && JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  datePublished: publishedDate,
+  author: { "@type": "Person", ...author },
+  mainEntityOfPage: canonicalUrl,
+});
 ---
 
 <!doctype html>
@@ -36,10 +53,21 @@ const canonicalUrl = new URL(Astro.url.pathname, site.url).toString();
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
 
-    <meta property="profile:first_name" content="Vitalya">
-    <meta property="profile:last_name" content="Volynskiy">
-    <meta property="profile:gender" content="male">
-    <meta property="profile:username" content="vitalyavolyn">
+    {type === "profile" && (
+      <>
+        <meta property="profile:first_name" content="Vitalya">
+        <meta property="profile:last_name" content="Volynskiy">
+        <meta property="profile:gender" content="male">
+        <meta property="profile:username" content="vitalyavolyn">
+      </>
+    )}
+    {type === "article" && (
+      <>
+        {publishedDate && <meta property="article:published_time" content={publishedDate} />}
+        <meta property="article:author" content={author.url} />
+        <script type="application/ld+json" set:html={articleJsonLd} />
+      </>
+    )}
 
     <link rel="canonical" href={canonicalUrl} />
     <meta name="generator" content={Astro.generator} />

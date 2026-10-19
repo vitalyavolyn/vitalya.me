@@ -14,7 +14,7 @@ const posts = (await getCollection("blog") as any[])
     }).replace(",", ""),
   }));
 ---
-<Layout title="blog" description="articles by Vitalya Volynskiy">
+<Layout title="blog" description="articles by Vitalya Volynskiy" type="website">
   <div class="container w-full grow py-8 mx-auto flex max-w-3xl flex-col gap-2 px-5 sm:px-8 relative top-4">
     <Nav />
     <h1 class="text-4xl font-semibold">articles</h1>
