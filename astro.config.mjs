@@ -17,6 +17,10 @@ export default defineConfig({
 
   output: "server",
 
+  build: {
+    inlineStylesheets: "always",
+  },
+
   server: {
     allowedHosts: true,
   },

@@ -91,19 +91,29 @@ const articleJsonLd = type === "article" && JSON.stringify({
 
   .balls {
     position: fixed;
-    inset: 0;
+    top: -10vw;
+    left: -10vw;
+    right: 0;
+    bottom: 0;
     image-rendering: pixelated;
     background: url(/balls.png) repeat;
-    background-size: 10% auto;
-    animation: slideBackground 120s linear infinite;
+    background-size: 10vw 10vw;
+    will-change: transform;
+    animation: slideBackground 13s linear infinite;
   }
 
   @keyframes slideBackground {
     from {
-      background-position: 0 0;
+      transform: translate3d(0, 0, 0);
     }
     to {
-      background-position: 100% 100%;
+      transform: translate3d(10vw, 10vw, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .balls {
+      animation: none;
     }
   }
 </style>
