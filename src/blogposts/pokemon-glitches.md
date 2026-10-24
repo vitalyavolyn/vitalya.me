@@ -79,6 +79,8 @@ The table is `GetTransferSlotByTrainerID` in `pokeplatinum/src/pal_park_transfer
 
 ## infinite battle with Magnet Rise, Fly and Gravity (HG/SS)
 
+**upd:** Cazenovia [tested this on Smogon](https://www.smogon.com/forums/threads/past-gens-research-thread.3506992/post-11119340) and it doesn't actually last forever: the Pokémon is only stuck while Gravity is up, and things go back to normal once Gravity wears off. oops!
+
 Get a Pokémon airborne two different ways at once and Gravity only knows how to undo one of them, the other sticks forever. The Pokémon stays invisible mid-Fly, locked into repeating that same move every turn, for the rest of the battle.
 
 Setup: have it use Magnet Rise, then Fly the following turn (so it's mid-vanish), then have the opponent use Gravity while both are still active. Gravity should end Magnet Rise and cancel the Fly/Bounce vanish, bringing the user back down and freeing up its move choice. Instead, it handles Magnet Rise first, then exits before the Fly cleanup runs. The Pokémon remains invisible and locked into repeating Fly for the rest of the battle.
